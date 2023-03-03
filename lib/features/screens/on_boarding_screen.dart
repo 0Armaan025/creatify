@@ -22,7 +22,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     OnbordingData(
       imagePath: "https://cdn-icons-png.flaticon.com/512/8055/8055576.png",
       title: "Best Script Optimization!",
-      desc: "Generate your scripts and optimize yours with the help of AI",
+      desc: "Generate your scripts and optimize yours with the help of AI!",
     ),
   ];
 

@@ -51,7 +51,7 @@ class _SignInScreenState extends State<SignInScreen> {
             Center(
               child: Image(
                 image: NetworkImage(
-                    'https://img.freepik.com/premium-vector/businessmen-shaking-hands-concluding-deal-signing-contract-concept-vector-illustration_143808-740.jpg?w=740'),
+                    'https://img.freepik.com/premium-vector/muslim-giving-gift-during-ramadan-celebration-hand-drawn-vector-illustration_450176-147.jpg?w=900'),
               ),
             ),
             const SizedBox(
@@ -65,7 +65,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 child: Text(
                   'Sign In',
                   style: GoogleFonts.poppins(
-                    color: Colors.black,
+                    color: textColor,
                     fontWeight: FontWeight.w600,
                     fontSize: 32,
                   ),
@@ -96,7 +96,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   margin: const EdgeInsets.symmetric(horizontal: 20),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    color: Colors.blue,
+                    color: btnColor,
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: Text(
@@ -119,7 +119,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   Text(
                     'New Here?',
                     style: GoogleFonts.poppins(
-                      color: Colors.blue,
+                      color: textColor,
                     ),
                   ),
                   InkWell(
@@ -129,7 +129,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     child: Text(
                       '\tSign Up!',
                       style: GoogleFonts.poppins(
-                        color: Colors.blue[900],
+                        color: textColor,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

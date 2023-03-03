@@ -13,6 +13,10 @@ showSnackBar(BuildContext context, String message) {
   ));
 }
 
+final bgColor = Color(0xFFD2D7D9);
+final textColor = Color(0xFF01121A);
+final btnColor = Color(0xFF87979F);
+
 String uid = "";
 String name = "";
 String email = "";

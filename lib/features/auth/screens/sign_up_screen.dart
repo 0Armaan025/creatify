@@ -95,7 +95,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 child: Text(
                   'Sign up',
                   style: GoogleFonts.poppins(
-                    color: Colors.black,
+                    color: textColor,
                     fontWeight: FontWeight.w600,
                     fontSize: 32,
                   ),
@@ -137,7 +137,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   margin: const EdgeInsets.symmetric(horizontal: 20),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    color: Colors.blue,
+                    color: btnColor,
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: Text(
@@ -160,7 +160,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Text(
                     'Already Joined Us?',
                     style: GoogleFonts.poppins(
-                      color: Colors.blue,
+                      color: textColor,
                     ),
                   ),
                   InkWell(
@@ -170,7 +170,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     child: Text(
                       '\tSign In!',
                       style: GoogleFonts.poppins(
-                        color: Colors.blue[900],
+                        color: textColor,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
