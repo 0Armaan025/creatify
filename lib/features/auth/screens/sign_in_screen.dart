@@ -1,23 +1,22 @@
 import 'package:creatify/features/auth/common/widgets/auth_field.dart';
 import 'package:creatify/features/auth/controller/auth_controller.dart';
 import 'package:creatify/features/auth/models/user.dart';
-import 'package:creatify/features/auth/screens/sign_in_screen.dart';
+import 'package:creatify/features/auth/screens/sign_up_screen.dart';
 import 'package:creatify/features/main/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:twilio_flutter/twilio_flutter.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+class SignInScreen extends StatefulWidget {
+  const SignInScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<SignInScreen> createState() => _SignInScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _SignInScreenState extends State<SignInScreen> {
   final _emailController = TextEditingController();
-  final _nameController = TextEditingController();
-  final _mobileController = TextEditingController();
+
   final _passwordController = TextEditingController();
 
   @override
@@ -26,37 +25,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
     super.initState();
   }
 
-  void sendMessage() async {
-    final String accountSid = 'ACb4cf88e58cb192edd990d56ffc944198';
-    final String authToken = '09b4b910662827ea42443a73fb697ccb';
-    final String fromPhoneNumber = '+17207828068';
-    final String message = 'Hello from Flutter!';
-
-    TwilioFlutter twilioFlutter = TwilioFlutter(
-      accountSid: accountSid, // replace *** with Account SID
-      authToken: authToken, // replace xxx with Auth Token
-      twilioNumber: fromPhoneNumber, // replace .... with Twilio Number
-    );
-
-    if (_mobileController.text.length != 13) {
-      showSnackBar(context, 'The Phone Number is invalid!');
-    } else if (_nameController.text.length < 3) {
-      showSnackBar(context, 'The name is invalid!');
-    } else {
-      twilioFlutter.sendSMS(
-          toNumber: '+917009280622',
-          messageBody:
-              'hello ${_nameController.text}, welcome to Creatify! We empower content creators and hackers! Let\'s see what content you make with the power of collaboration,gamifying experience and AI ⭐');
-      AuthController controller = AuthController();
-      UserModel model = UserModel(
-          email: _emailController.text,
-          name: _nameController.text.trim(),
-          password: _passwordController.text,
-          phoneNumber: _mobileController.text,
-          uid: '',
-          reputation: '0');
-      controller.signUp(context, model);
-    }
+  void sendMessage(BuildContext context) async {
+    AuthController controller = AuthController();
+    controller.login(context, _emailController.text, _passwordController.text);
   }
 
   @override
@@ -64,8 +35,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     // TODO: implement dispose
     super.dispose();
     _emailController.dispose();
-    _nameController.dispose();
-    _mobileController.dispose;
+
     _passwordController.dispose();
   }
 
@@ -93,7 +63,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Sign up',
+                  'Sign In',
                   style: GoogleFonts.poppins(
                     color: Colors.black,
                     fontWeight: FontWeight.w600,
@@ -108,17 +78,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 icon: Icon(Icons.email),
                 controller: _emailController),
             AuthField(
-                hintText: 'Full Name',
-                isObscure: false,
-                icon: Icon(Icons.person),
-                controller: _nameController),
-            AuthField(
-                hintText: 'Phone Number [with country code]',
-                isObscure: false,
-                inputType: TextInputType.phone,
-                icon: Icon(Icons.phone),
-                controller: _mobileController),
-            AuthField(
                 hintText: 'Password',
                 isObscure: true,
                 icon: Icon(Icons.password),
@@ -129,7 +88,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             Center(
               child: InkWell(
                 onTap: () {
-                  sendMessage();
+                  sendMessage(context);
                 },
                 child: Container(
                   width: double.infinity,
@@ -158,17 +117,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Already Joined Us?',
+                    'New Here?',
                     style: GoogleFonts.poppins(
                       color: Colors.blue,
                     ),
                   ),
                   InkWell(
                     onTap: () {
-                      moveScreen(context, false, const SignInScreen());
+                      moveScreen(context, false, SignUpScreen());
                     },
                     child: Text(
-                      '\tSign In!',
+                      '\tSign Up!',
                       style: GoogleFonts.poppins(
                         color: Colors.blue[900],
                         fontWeight: FontWeight.bold,
