@@ -72,26 +72,31 @@ class _TeamWidgetState extends State<TeamWidget> {
             const SizedBox(
               height: 20,
             ),
-            Center(
-              child: InkWell(
-                onTap: () {
-                  moveScreen(context, false, TeamInfoScreen());
-                },
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 20),
-                  width: double.infinity,
-                  height: 40,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                    color: Color(0xFF87979F),
-                  ),
-                  child: Text(
-                    "Explore",
-                    style: GoogleFonts.roboto(
-                      color: Color(0xFFF3FAFE),
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
+            InkWell(
+              onTap: () {
+                moveScreen(context, false, TeamInfoScreen());
+              },
+              child: Center(
+                child: InkWell(
+                  onTap: () {
+                    moveScreen(context, false, TeamInfoScreen());
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    width: double.infinity,
+                    height: 40,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      color: Color(0xFF87979F),
+                    ),
+                    child: Text(
+                      "Explore",
+                      style: GoogleFonts.roboto(
+                        color: Color(0xFFF3FAFE),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ),

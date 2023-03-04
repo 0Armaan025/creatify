@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:creatify/features/home_screen/home_screen.dart';
 import 'package:creatify/features/home_screen/teams/screens/create_team_screen.dart';
 import 'package:creatify/features/home_screen/teams/screens/teams_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -72,6 +73,9 @@ Drawer makeDrawer(BuildContext context) {
         Padding(
           padding: const EdgeInsets.all(0),
           child: ListTile(
+            onTap: () {
+              moveScreen(context, true, HomeScreen());
+            },
             tileColor: Color(0xFF336882),
             leading: Icon(
               Icons.home,

@@ -79,28 +79,31 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
               height: 20,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              padding: const EdgeInsets.symmetric(horizontal: 18.0),
               child: Card(
                 elevation: 3.0,
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    TeamField(
-                        hintText: 'Enter your team\'s name',
-                        controller: _teamNameController,
-                        inputType: TextInputType.text,
-                        isObscure: false),
-                    TeamField(
-                        hintText: 'Enter your team\'s tagline',
-                        controller: _teamTaglineController,
-                        inputType: TextInputType.text,
-                        isObscure: false),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                  ],
+                child: Container(
+                  color: Colors.lightBlue.shade100,
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      TeamField(
+                          hintText: 'Enter your team\'s name',
+                          controller: _teamNameController,
+                          inputType: TextInputType.text,
+                          isObscure: false),
+                      TeamField(
+                          hintText: 'Enter your team\'s tagline',
+                          controller: _teamTaglineController,
+                          inputType: TextInputType.text,
+                          isObscure: false),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
