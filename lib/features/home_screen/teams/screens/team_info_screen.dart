@@ -1,11 +1,21 @@
-import 'package:creatify/features/home_screen/teams/screens/check_list/check_list_screen.dart';
-import 'package:creatify/features/home_screen/teams/widgets/team_member_widget.dart';
-import 'package:creatify/features/main/constants.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'package:creatify/features/home_screen/teams/screens/check_list/check_list_screen.dart';
+import 'package:creatify/features/home_screen/teams/widgets/team_member_widget.dart';
+import 'package:creatify/features/main/constants.dart';
+
 class TeamInfoScreen extends StatefulWidget {
-  const TeamInfoScreen({super.key});
+  final String teamName;
+  final String tagline;
+  final String image;
+  const TeamInfoScreen({
+    Key? key,
+    required this.teamName,
+    required this.tagline,
+    required this.image,
+  }) : super(key: key);
 
   @override
   State<TeamInfoScreen> createState() => _TeamInfoScreenState();
@@ -46,8 +56,7 @@ class _TeamInfoScreenState extends State<TeamInfoScreen> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 image: DecorationImage(
-                    image: NetworkImage('https://picsum.photos/200'),
-                    fit: BoxFit.cover),
+                    image: NetworkImage('$widget.image'), fit: BoxFit.cover),
               ),
             ),
             const SizedBox(
@@ -55,7 +64,7 @@ class _TeamInfoScreenState extends State<TeamInfoScreen> {
             ),
             Center(
               child: Text(
-                '" Make something creative is the tagline "',
+                '" ${widget.tagline} "',
                 style: GoogleFonts.roboto(
                   color: Colors.black,
                   fontSize: 14,

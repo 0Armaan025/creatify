@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:creatify/features/home_screen/teams/screens/create_team_screen.dart';
 import 'package:creatify/features/home_screen/teams/screens/teams_screen.dart';
 import 'package:creatify/features/home_screen/teams/widgets/team_widget.dart';
@@ -104,16 +105,31 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 10,
               ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    TeamWidget(),
-                    TeamWidget(),
-                  ],
-                ),
-              ),
+              StreamBuilder(
+                  stream: firestore.collection('teams').snapshots(),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<QuerySnapshot> snapshot) {
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+
+                    return SizedBox(
+                      height: 300,
+                      width: 1200,
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        children: snapshot.data!.docs.map((document) {
+                          return TeamWidget(
+                            image: document['image'],
+                            name: document['teamName'],
+                            tagline: document['teamTagline'],
+                          );
+                        }).toList(),
+                      ),
+                    );
+                  }),
               const SizedBox(
                 height: 25,
               ),

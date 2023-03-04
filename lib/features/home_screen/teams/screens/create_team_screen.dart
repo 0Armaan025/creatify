@@ -1,5 +1,8 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:creatify/features/auth/controller/team_controller.dart';
+import 'package:creatify/features/auth/models/team.dart';
 import 'package:creatify/features/home_screen/teams/widgets/team_field.dart';
 import 'package:creatify/features/main/constants.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +25,37 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
     super.dispose();
     _teamTaglineController.dispose();
     _teamNameController.dispose();
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getData();
+  }
+
+  void getData() {
+    final data = firestore
+        .collection('users')
+        .doc(uid)
+        .get()
+        .then((DocumentSnapshot snapshot) {
+      name = snapshot.get('name');
+      email = snapshot.get('email');
+      setState(() {});
+    });
+  }
+
+  void makeTeam() async {
+    TeamModel model = TeamModel(
+        image: '',
+        members: [''],
+        teamCreatorName: name,
+        teamCreatorUid: uid,
+        teamName: _teamNameController.text,
+        teamTagline: _teamTaglineController.text);
+    TeamController controller = TeamController();
+    controller.makeTeam(model, context, myFile!);
   }
 
   void pickImage() async {
@@ -128,21 +162,26 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
             ),
             //button
             Center(
-              child: Container(
-                width: double.infinity,
-                margin: const EdgeInsets.symmetric(horizontal: 30),
-                height: size.height * 0.08,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: Color(0xFF314B57),
-                  borderRadius: BorderRadius.circular(10),
+              child: InkWell(
+                onTap: () {
+                  makeTeam();
+                },
+                child: Container(
+                  width: double.infinity,
+                  margin: const EdgeInsets.symmetric(horizontal: 30),
+                  height: size.height * 0.08,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: Color(0xFF314B57),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Text('Yeah, let\'s do this!',
+                      style: GoogleFonts.roboto(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontWeight: FontWeight.w600,
+                      )),
                 ),
-                child: Text('Yeah, let\'s do this!',
-                    style: GoogleFonts.roboto(
-                      color: Colors.white,
-                      fontSize: 22,
-                      fontWeight: FontWeight.w600,
-                    )),
               ),
             ),
           ],

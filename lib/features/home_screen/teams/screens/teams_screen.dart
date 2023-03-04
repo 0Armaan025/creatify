@@ -12,7 +12,6 @@ class TeamsScreen extends StatefulWidget {
 }
 
 class _TeamsScreenState extends State<TeamsScreen> {
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +26,7 @@ class _TeamsScreenState extends State<TeamsScreen> {
               crossAxisCount: 1,
             ),
             itemBuilder: (BuildContext context, int index) {
-              return TeamWidget();
+              return Text('hi');
             },
           )),
     );

@@ -1,10 +1,20 @@
-import 'package:creatify/features/home_screen/teams/screens/team_info_screen.dart';
-import 'package:creatify/features/main/constants.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'package:creatify/features/home_screen/teams/screens/team_info_screen.dart';
+import 'package:creatify/features/main/constants.dart';
+
 class TeamWidget extends StatefulWidget {
-  const TeamWidget({super.key});
+  final String image;
+  final String name;
+  final String tagline;
+  const TeamWidget({
+    Key? key,
+    required this.image,
+    required this.name,
+    required this.tagline,
+  }) : super(key: key);
 
   @override
   State<TeamWidget> createState() => _TeamWidgetState();
@@ -28,7 +38,7 @@ class _TeamWidgetState extends State<TeamWidget> {
           children: [
             Center(
               child: Image(
-                image: AssetImage('assets/images/creatify.png'),
+                image: NetworkImage('${widget.image}'),
                 fit: BoxFit.cover,
                 height: 110,
                 width: double.infinity,
@@ -42,7 +52,7 @@ class _TeamWidgetState extends State<TeamWidget> {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Creatify',
+                  '${widget.name}',
                   style: GoogleFonts.lato(
                     color: Color(0xFFF3FAFE),
                     fontWeight: FontWeight.bold,
@@ -60,7 +70,7 @@ class _TeamWidgetState extends State<TeamWidget> {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Create something creative is only our tagline!',
+                  '${widget.tagline}',
                   style: GoogleFonts.lato(
                     color: Color(0xFFF3FAFE),
                     fontWeight: FontWeight.w300,
