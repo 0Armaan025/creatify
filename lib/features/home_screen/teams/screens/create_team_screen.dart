@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:creatify/features/home_screen/teams/widgets/team_field.dart';
 import 'package:creatify/features/main/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 
 class CreateTeamScreen extends StatefulWidget {
   const CreateTeamScreen({super.key});
@@ -13,11 +16,20 @@ class CreateTeamScreen extends StatefulWidget {
 class _CreateTeamScreenState extends State<CreateTeamScreen> {
   final _teamNameController = TextEditingController();
   final _teamTaglineController = TextEditingController();
+  File? myFile = null;
 
   void dispose() {
     super.dispose();
     _teamTaglineController.dispose();
     _teamNameController.dispose();
+  }
+
+  void pickImage() async {
+    final ImagePicker _picker = ImagePicker();
+    // Pick an image
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    myFile = File(image!.path);
+    setState(() {});
   }
 
   @override
@@ -65,11 +77,13 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
               margin: const EdgeInsets.symmetric(horizontal: 20),
               height: size.height * 0.3,
               alignment: Alignment.center,
-              child: IconButton(
-                icon:
-                    Icon(Icons.add_a_photo, color: Colors.grey[200], size: 30),
-                onPressed: () {},
-              ),
+              child: myFile == null
+                  ? IconButton(
+                      icon: Icon(Icons.add_a_photo,
+                          color: Colors.grey[200], size: 30),
+                      onPressed: () {},
+                    )
+                  : Image(image: FileImage(myFile!)),
               decoration: BoxDecoration(
                 color: Colors.grey[500],
                 borderRadius: BorderRadius.circular(10),
