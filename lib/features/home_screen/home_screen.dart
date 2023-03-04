@@ -1,3 +1,4 @@
+import 'package:creatify/features/home_screen/teams/screens/teams_screen.dart';
 import 'package:creatify/features/home_screen/teams/widgets/team_widget.dart';
 import 'package:creatify/features/main/constants.dart';
 import 'package:flutter/material.dart';
@@ -73,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       "Your recent teams...",
                       style: GoogleFonts.poppins(
                         color: textColor,
-                        fontSize: 22,
+                        fontSize: 19,
                       ),
                     ),
                   ),
@@ -84,8 +85,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     alignment: Alignment.centerRight,
                     child: TextButton(
-                      child: Text('View All...'),
-                      onPressed: () {},
+                      child: Text(
+                        'View All...',
+                        style: GoogleFonts.roboto(
+                          color: Color(0xFF01121A),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 19,
+                        ),
+                      ),
+                      onPressed: () {
+                        moveScreen(context, false, TeamsScreen());
+                      },
                     ),
                   ),
                 ],
