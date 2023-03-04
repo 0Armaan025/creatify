@@ -1,6 +1,6 @@
 import 'package:creatify/features/auth/models/user.dart';
+import 'package:creatify/features/home_screen/home_screen.dart';
 import 'package:creatify/features/main/constants.dart';
-import 'package:creatify/features/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class AuthController {

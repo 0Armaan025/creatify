@@ -1,6 +1,6 @@
 import 'package:creatify/features/auth/screens/sign_up_screen.dart';
+import 'package:creatify/features/home_screen/home_screen.dart';
 import 'package:creatify/features/main/constants.dart';
-import 'package:creatify/features/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_screen/OnbordingData.dart';
 import 'package:flutter_onboarding_screen/flutteronboardingscreens.dart';

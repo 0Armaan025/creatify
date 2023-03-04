@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 final firestore = FirebaseFirestore.instance;
 final firebaseAuth = FirebaseAuth.instance;
@@ -15,12 +16,18 @@ showSnackBar(BuildContext context, String message) {
 
 AppBar makeAppBar() {
   return AppBar(
-    backgroundColor: Color(0xFF011B28),
-    title: Text('Creatify'),
+    backgroundColor: Color(0xFF336882),
+    title: Text(
+      'Creatify',
+      style: GoogleFonts.poppins(
+        color: Color(0xFFF3FAFE),
+      ),
+    ),
+    centerTitle: true,
   );
 }
 
-final bgColor = Color.fromARGB(255, 255, 255, 255);
+final bgColor = Color(0xFFD2D7D9);
 final textColor = Color(0xFF01121A);
 final btnColor = Color(0xFF87979F);
 
