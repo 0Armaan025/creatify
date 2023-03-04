@@ -7,14 +7,8 @@ import 'package:creatify/features/home_screen/teams/widgets/team_member_widget.d
 import 'package:creatify/features/main/constants.dart';
 
 class TeamInfoScreen extends StatefulWidget {
-  final String teamName;
-  final String tagline;
-  final String image;
   const TeamInfoScreen({
     Key? key,
-    required this.teamName,
-    required this.tagline,
-    required this.image,
   }) : super(key: key);
 
   @override
@@ -64,7 +58,7 @@ class _TeamInfoScreenState extends State<TeamInfoScreen> {
             ),
             Center(
               child: Text(
-                '" ${widget.tagline} "',
+                '" hi "',
                 style: GoogleFonts.roboto(
                   color: Colors.black,
                   fontSize: 14,
