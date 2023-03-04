@@ -1,4 +1,5 @@
 import 'package:creatify/features/auth/screens/sign_up_screen.dart';
+import 'package:creatify/features/main/constants.dart';
 import 'package:creatify/features/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_screen/OnbordingData.dart';
@@ -27,12 +28,24 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   ];
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    if (firebaseAuth.currentUser != null) {
+      uid = firebaseAuth.currentUser?.uid ?? '';
+      setState(() {});
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     /* remove the back button in the AppBar is to set automaticallyImplyLeading to false
   here we need to pass the list and the route for the next page to be opened after this. */
     return IntroScreen(
       list,
-      MaterialPageRoute(builder: (context) => SignUpScreen()),
+      MaterialPageRoute(
+          builder: (context) =>
+              firebaseAuth.currentUser == null ? SignUpScreen() : HomeScreen()),
     );
   }
 }

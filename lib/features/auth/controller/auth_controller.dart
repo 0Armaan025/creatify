@@ -1,5 +1,6 @@
 import 'package:creatify/features/auth/models/user.dart';
 import 'package:creatify/features/main/constants.dart';
+import 'package:creatify/features/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class AuthController {
@@ -19,6 +20,7 @@ class AuthController {
             phoneNumber: model.phoneNumber,
             reputation: '0');
         firestore.collection('users').doc(uid).set(newModel.toMap());
+        moveScreen(context, true, HomeScreen());
       });
     } catch (e) {
       showSnackBar(
@@ -31,7 +33,7 @@ class AuthController {
       firebaseAuth
           .signInWithEmailAndPassword(email: email, password: password)
           .then((value) {
-        print('done');
+        moveScreen(context, true, HomeScreen());
       });
     } catch (e) {
       showSnackBar(

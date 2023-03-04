@@ -13,7 +13,14 @@ showSnackBar(BuildContext context, String message) {
   ));
 }
 
-final bgColor = Color(0xFFD2D7D9);
+AppBar makeAppBar() {
+  return AppBar(
+    backgroundColor: Color(0xFF011B28),
+    title: Text('Creatify'),
+  );
+}
+
+final bgColor = Color.fromARGB(255, 255, 255, 255);
 final textColor = Color(0xFF01121A);
 final btnColor = Color(0xFF87979F);
 
