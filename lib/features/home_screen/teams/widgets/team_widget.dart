@@ -1,3 +1,5 @@
+import 'package:creatify/features/home_screen/teams/screens/team_info_screen.dart';
+import 'package:creatify/features/main/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -71,21 +73,26 @@ class _TeamWidgetState extends State<TeamWidget> {
               height: 20,
             ),
             Center(
-              child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 20),
-                width: double.infinity,
-                height: 40,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  color: Color(0xFF87979F),
-                ),
-                child: Text(
-                  "Explore",
-                  style: GoogleFonts.roboto(
-                    color: Color(0xFFF3FAFE),
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
+              child: InkWell(
+                onTap: () {
+                  moveScreen(context, false, TeamInfoScreen());
+                },
+                child: Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 20),
+                  width: double.infinity,
+                  height: 40,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    color: Color(0xFF87979F),
+                  ),
+                  child: Text(
+                    "Explore",
+                    style: GoogleFonts.roboto(
+                      color: Color(0xFFF3FAFE),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
               ),
