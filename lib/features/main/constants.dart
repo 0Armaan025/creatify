@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:creatify/features/home_screen/teams/screens/create_team_screen.dart';
 import 'package:creatify/features/home_screen/teams/screens/teams_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -20,6 +21,19 @@ AppBar makeAppBar() {
     backgroundColor: Color(0xFF336882),
     title: Text(
       'Creatify',
+      style: GoogleFonts.poppins(
+        color: Color(0xFFF3FAFE),
+      ),
+    ),
+    centerTitle: true,
+  );
+}
+
+AppBar makeCustomAppBar(String message) {
+  return AppBar(
+    backgroundColor: Color(0xFF336882),
+    title: Text(
+      '$message',
       style: GoogleFonts.poppins(
         color: Color(0xFFF3FAFE),
       ),
@@ -103,6 +117,9 @@ Drawer makeDrawer(BuildContext context) {
         Padding(
           padding: const EdgeInsets.all(0),
           child: ListTile(
+            onTap: () {
+              moveScreen(context, false, CreateTeamScreen());
+            },
             tileColor: Color(0xFF336882),
             leading: Icon(
               Icons.add,

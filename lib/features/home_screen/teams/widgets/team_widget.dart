@@ -15,7 +15,7 @@ class _TeamWidgetState extends State<TeamWidget> {
     return Padding(
       padding: const EdgeInsets.all(14.0),
       child: Container(
-        height: size.height * 0.35,
+        height: size.height * 0.4,
         width: size.width * 0.6,
         decoration: BoxDecoration(
           color: Color(0xFF1D546F),

@@ -106,61 +106,83 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 25,
               ),
-              Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Want to make one?',
-                      style: GoogleFonts.roboto(
-                        fontSize: 18,
-                        color: Color(0xFF01121A),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 28.0),
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  elevation: 2.0,
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 20,
                       ),
-                    ),
-                    Text(
-                      '\tMake Here!',
-                      style: GoogleFonts.roboto(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF01121A),
+                      Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Want to make one?',
+                              style: GoogleFonts.roboto(
+                                fontSize: 18,
+                                color: Color(0xFF01121A),
+                              ),
+                            ),
+                            Text(
+                              '\tMake Here!',
+                              style: GoogleFonts.roboto(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFF01121A),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Center(
-                child: Text(
-                  '" Collaboration is better than making alone\n- a wise human "',
-                  style: GoogleFonts.poppins(
-                    color: Colors.black,
-                    fontSize: 13,
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Center(
+                        child: Text(
+                          '" Collaboration is better than making alone\n- a wise human "',
+                          style: GoogleFonts.poppins(
+                            color: Colors.black,
+                            fontSize: 13,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Center(
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 30),
+                          width: double.infinity,
+                          height: 50,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: Color(0xFF1C3A48),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Text(
+                            "Yeah, let's collab!",
+                            style: GoogleFonts.roboto(
+                              color: Color(0xFFF3FAFE),
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                    ],
                   ),
                 ),
               ),
               const SizedBox(
                 height: 20,
-              ),
-              Center(
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 30),
-                  width: double.infinity,
-                  height: 50,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: Color(0xFF1C3A48),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Text(
-                    "Yeah, let's collab!",
-                    style: GoogleFonts.roboto(
-                      color: Color(0xFFF3FAFE),
-                      fontSize: 18,
-                    ),
-                  ),
-                ),
               ),
             ],
           ),
