@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:creatify/features/home_screen/home_screen.dart';
 import 'package:creatify/features/home_screen/teams/screens/ai_script/screens/optimization_screen.dart';
@@ -46,8 +44,6 @@ AppBar makeCustomAppBar(String message) {
     centerTitle: true,
   );
 }
-
-File? pickedFile;
 
 Drawer makeDrawer(BuildContext context) {
   return Drawer(

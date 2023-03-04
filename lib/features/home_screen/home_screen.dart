@@ -1,3 +1,4 @@
+import 'package:creatify/features/home_screen/teams/screens/create_team_screen.dart';
 import 'package:creatify/features/home_screen/teams/screens/teams_screen.dart';
 import 'package:creatify/features/home_screen/teams/widgets/team_widget.dart';
 import 'package:creatify/features/main/constants.dart';
@@ -139,12 +140,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                 color: Color(0xFF01121A),
                               ),
                             ),
-                            Text(
-                              '\tMake Here!',
-                              style: GoogleFonts.roboto(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFF01121A),
+                            InkWell(
+                              onTap: () {
+                                moveScreen(context, false, CreateTeamScreen());
+                              },
+                              child: Text(
+                                '\tMake Here!',
+                                style: GoogleFonts.roboto(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xFF01121A),
+                                ),
                               ),
                             ),
                           ],

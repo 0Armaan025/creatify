@@ -81,7 +81,9 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
                   ? IconButton(
                       icon: Icon(Icons.add_a_photo,
                           color: Colors.grey[200], size: 30),
-                      onPressed: () {},
+                      onPressed: () {
+                        pickImage();
+                      },
                     )
                   : Image(image: FileImage(myFile!)),
               decoration: BoxDecoration(
