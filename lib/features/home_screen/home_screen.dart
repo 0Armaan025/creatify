@@ -16,6 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: bgColor,
       appBar: makeAppBar(),
+      drawer: makeDrawer(context),
       body: SingleChildScrollView(
         child: Container(
           child: Column(
