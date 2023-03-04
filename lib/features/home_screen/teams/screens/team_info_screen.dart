@@ -1,3 +1,4 @@
+import 'package:creatify/features/home_screen/teams/screens/check_list/check_list_screen.dart';
 import 'package:creatify/features/home_screen/teams/widgets/team_member_widget.dart';
 import 'package:creatify/features/main/constants.dart';
 import 'package:flutter/material.dart';
@@ -125,19 +126,24 @@ class _TeamInfoScreenState extends State<TeamInfoScreen> {
                 const SizedBox(
                   width: 20,
                 ),
-                Container(
-                  padding: const EdgeInsets.all(4),
-                  width: 150,
-                  height: 40,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 107, 120, 126),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Text(
-                    'Check the checklist',
-                    style: GoogleFonts.roboto(
-                      color: Color(0xFFF3FAFE),
+                InkWell(
+                  onTap: () {
+                    moveScreen(context, false, CheckListScreen());
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(4),
+                    width: 150,
+                    height: 40,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 107, 120, 126),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Text(
+                      'Check the checklist',
+                      style: GoogleFonts.roboto(
+                        color: Color(0xFFF3FAFE),
+                      ),
                     ),
                   ),
                 ),
