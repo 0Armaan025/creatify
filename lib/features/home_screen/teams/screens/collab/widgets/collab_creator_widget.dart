@@ -144,19 +144,28 @@ class _CreatorWidgetState extends State<CreatorWidget> {
               Positioned(
                 top: 210,
                 left: 70,
-                child: Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20),
-                    width: 120,
-                    height: size.height * 0.04,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: btnColor,
-                    ),
-                    alignment: Alignment.center,
-                    child: Text("Collab!",
-                        style: GoogleFonts.roboto(
-                          color: Colors.white,
-                        ))),
+                child: InkWell(
+                  onTap: () {
+                    showMyDialog(
+                        context,
+                        'Collaboration!',
+                        'Are you sure you want to collab with ${widget.name}, your reputation will be increased by 10!!',
+                        '');
+                  },
+                  child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 20),
+                      width: 120,
+                      height: size.height * 0.04,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: btnColor,
+                      ),
+                      alignment: Alignment.center,
+                      child: Text("Collab!",
+                          style: GoogleFonts.roboto(
+                            color: Colors.white,
+                          ))),
+                ),
               ),
             ],
           ),

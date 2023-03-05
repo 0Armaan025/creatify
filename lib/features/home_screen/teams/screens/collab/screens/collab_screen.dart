@@ -41,12 +41,37 @@ class _CollabScreenState extends State<CollabScreen> {
             CreatorWidget(
                 name: 'Armaan',
                 tagline: "Hi there! I am Armaan\nand I want to win this!",
-                socialStatus: "15"),
+                socialStatus: "3"),
             CreatorWidget(
                 name: 'Vinayak from MLH',
                 tagline:
-                    "Hi there! I am Vinayak\n(coach at MLH)\nand I want to collab with people!",
-                socialStatus: "15"),
+                    "Hi there! I am Vinayak\n(coach at MLH)\nand I like helping hackers!",
+                socialStatus: "100"),
+            CreatorWidget(
+                name: 'Stephen from MLH',
+                tagline:
+                    "Hi there! I am Vinayak\n(coach at MLH)\nand I like collabing!",
+                socialStatus: "100"),
+            CreatorWidget(
+                name: 'Jasmine from MLH',
+                tagline:
+                    "Hi there! I am Jasmine\n(coach at MLH)\nand I like chess!",
+                socialStatus: "100"),
+            CreatorWidget(
+                name: 'Aster',
+                tagline:
+                    "Hi there! I am Aster\n(a flutter developer)\nand I like to hack!",
+                socialStatus: "70"),
+            CreatorWidget(
+                name: '404_Not_Found Jobs',
+                tagline:
+                    "Hi there! I am 404\n(a mentor at MLH)\nand I like to travel! (switzerland)",
+                socialStatus: "70"),
+            CreatorWidget(
+                name: 'Ritvi from MLH',
+                tagline:
+                    "Hi there! I am Ritvi\n(coach at MLH)\nand I watched batman movie\non Sunday ;)'",
+                socialStatus: "100"),
           ],
         ),
       ),

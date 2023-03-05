@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:creatify/features/home_screen/teams/screens/chat_screen/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -145,19 +146,24 @@ class _TeamInfoScreenState extends State<TeamInfoScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  padding: const EdgeInsets.all(4),
-                  width: 150,
-                  height: 40,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: Color(0xFF87979F),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Text(
-                    'Chat with teammates',
-                    style: GoogleFonts.roboto(
-                      color: Color(0xFFF3FAFE),
+                InkWell(
+                  onTap: () {
+                    moveScreen(context, false, ChatScreen());
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(4),
+                    width: 150,
+                    height: 40,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Color(0xFF87979F),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Text(
+                      'Chat with teammates',
+                      style: GoogleFonts.roboto(
+                        color: Color(0xFFF3FAFE),
+                      ),
                     ),
                   ),
                 ),

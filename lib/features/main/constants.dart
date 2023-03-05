@@ -261,6 +261,32 @@ Future<void> showMyDialog(
                 showSnackBar(context,
                     'Unfortunately, the team has been deleted due to giving up of one member');
                 moveScreen(context, true, HomeScreen());
+              } else {
+                showSnackBar(
+                    context, "The request has been sent successfully to them");
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        actions: [
+                          TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                                moveScreen(context, false, HomeScreen());
+                              },
+                              child: Text("yayyyyy!")),
+                        ],
+                        content: SizedBox(
+                          height: 100,
+                          child: ListView(
+                            children: [
+                              Text(
+                                  "Congratulations! your 10 points have been added!\nGood JOB!"),
+                            ],
+                          ),
+                        ),
+                      );
+                    });
               }
             },
           ),
