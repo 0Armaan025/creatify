@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:clipboard/clipboard.dart';
 import 'package:creatify/features/main/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -22,8 +23,37 @@ class _OptimizationScreenState extends State<OptimizationScreen> {
     super.initState();
   }
 
-  void _onGeneratePressed(BuildContext context, String prompt) async {
-    // showSnackBar(result);
+  Future<String> generateText(String prompt) async {
+    // Here we have to create body based on the document
+    try {
+      Map<String, dynamic> requestBody = {
+        "model": "text-davinci-003",
+        "prompt": prompt,
+        "temperature": 0,
+        "max_tokens": 100,
+      };
+      // Post Api Url
+      var url = Uri.parse('https://api.openai.com/v1/completions');
+      //  use post method of http and pass url,headers and body according to documents
+      var response = await http.post(url,
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer $apiSecretKey"
+          },
+          body: json.encode(requestBody)); // post call
+      // Checked we get the response or not
+      // if status code is 200 then Api Call is Successfully Executed
+      if (response.statusCode == 200) {
+        var responseJson = json.decode(response.body);
+        _generatedText = responseJson["choices"][0]["text"];
+        setState(() {});
+        return responseJson["choices"][0]["text"];
+      } else {
+        return "Failed to generate text: ${response.body}";
+      }
+    } catch (e) {
+      return "Failed to generate text: $e";
+    }
   }
 
   @override
@@ -61,6 +91,7 @@ class _OptimizationScreenState extends State<OptimizationScreen> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
+                  hintText: 'Write your script here to optimize',
                 ),
                 maxLines: null,
                 maxLength: 500,
@@ -73,7 +104,9 @@ class _OptimizationScreenState extends State<OptimizationScreen> {
             Center(
               child: InkWell(
                 onTap: () {
-                  _onGeneratePressed(context, _scriptController.text);
+                  final prompt =
+                      "Optimize the script ${_scriptController.text}";
+                  generateText(prompt);
                 },
                 child: Container(
                     margin: const EdgeInsets.symmetric(horizontal: 70),
@@ -91,6 +124,41 @@ class _OptimizationScreenState extends State<OptimizationScreen> {
                         fontSize: 18,
                       ),
                     )),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Container(
+              margin: const EdgeInsets.all(18),
+              child: Center(
+                child: Text(
+                  "The Optimized script is:- $_generatedText",
+                  style: GoogleFonts.roboto(
+                    color: Colors.grey[600],
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Container(
+              margin: const EdgeInsets.only(right: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    "Copy this",
+                    style: GoogleFonts.poppins(color: textColor),
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.copy),
+                    onPressed: () {
+                      FlutterClipboard.copy(_generatedText);
+                    },
+                  ),
+                ],
               ),
             ),
           ],

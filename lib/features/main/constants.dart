@@ -236,6 +236,8 @@ Drawer makeDrawer(BuildContext context) {
   );
 }
 
+const apiSecretKey = "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";
+
 final bgColor = Color(0xFFD2D7D9);
 final textColor = Color(0xFF01121A);
 final btnColor = Color(0xFF87979F);
