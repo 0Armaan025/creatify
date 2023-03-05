@@ -1,9 +1,19 @@
-import 'package:creatify/features/main/constants.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'package:creatify/features/main/constants.dart';
+
 class CreatorWidget extends StatefulWidget {
-  const CreatorWidget({super.key});
+  final String name;
+  final String socialStatus;
+  final String tagline;
+  const CreatorWidget({
+    Key? key,
+    required this.name,
+    required this.socialStatus,
+    required this.tagline,
+  }) : super(key: key);
 
   @override
   State<CreatorWidget> createState() => _CreatorWidgetState();
@@ -16,7 +26,7 @@ class _CreatorWidgetState extends State<CreatorWidget> {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 20),
       height: size.height * 0.33,
-      width: size.width * 0.6,
+      width: size.width * 0.8,
       decoration: BoxDecoration(
         color: Color(0xFF1D546F),
         borderRadius: BorderRadius.circular(10),
@@ -28,14 +38,15 @@ class _CreatorWidgetState extends State<CreatorWidget> {
             children: [
               Positioned(
                 child: Container(
-                  height: size.height * 0.32,
+                  height: size.height * 0.31,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     image: DecorationImage(
                       image: NetworkImage(
-                          'https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8ZG9nfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60'),
-                      fit: BoxFit.cover,
+                          'https://s3.amazonaws.com/organizer.mlh.io/olpwndiq7wwmpfh35rs3imyahxqg?response-content-disposition=inline%3B%20filename%3D%22OHQ%20or%20Website.png%22%3B%20filename%2A%3DUTF-8%27%27OHQ%2520or%2520Website.png&response-content-type=image%2Fpng&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJFCF2ZS25I2RWYBQ%2F20230305%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230305T015944Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=ba69ba3fbdd39aa4eee6f9c638424c8aa44e35e2907e7b5caf4e7f944193b874'),
+                      // fit: BoxFit.cover,
+                      fit: BoxFit.fill,
                     ),
                   ),
                 ),
@@ -52,7 +63,7 @@ class _CreatorWidgetState extends State<CreatorWidget> {
                 ),
               ),
               Positioned(
-                left: 150,
+                left: 210,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: CircleAvatar(
@@ -62,7 +73,7 @@ class _CreatorWidgetState extends State<CreatorWidget> {
                       backgroundColor: Color(0xFFD2D7D9),
                       radius: 20,
                       child: Text(
-                        '7',
+                        '${widget.socialStatus}',
                         style: GoogleFonts.roboto(
                           fontWeight: FontWeight.bold,
                           color: textColor,
@@ -73,7 +84,7 @@ class _CreatorWidgetState extends State<CreatorWidget> {
                 ),
               ),
               Positioned(
-                left: 120,
+                left: 180,
                 top: 50,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -81,40 +92,44 @@ class _CreatorWidgetState extends State<CreatorWidget> {
                     'Social Status',
                     style: GoogleFonts.roboto(
                       fontWeight: FontWeight.bold,
-                      color: textColor,
+                      color: Colors.white,
+                      backgroundColor: Colors.black,
                     ),
                   ),
                 ),
               ),
               Positioned(
-                  top: 130,
+                  top: 120,
                   left: 10,
                   child: Center(
                     child: Text(
-                      "Armaan",
+                      "${widget.name}",
                       style: GoogleFonts.poppins(
-                        color: textColor,
-                        fontSize: 18,
+                        color: Colors.green,
+                        fontSize: 21,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   )),
               Positioned(
-                  top: 160,
+                  top: 150,
                   left: 10,
                   child: Center(
-                    child: Text(
-                      "Hi there! I am a content there\nI am available there on Creatify!",
-                      style: GoogleFonts.roboto(
-                        color: textColor,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w300,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 2.0),
+                      child: Text(
+                        "${widget.tagline}",
+                        style: GoogleFonts.roboto(
+                          color: Colors.white,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w800,
+                        ),
                       ),
                     ),
                   )),
               Positioned(
-                top: 200,
-                left: 30,
+                top: 210,
+                left: 70,
                 child: Container(
                     margin: const EdgeInsets.symmetric(horizontal: 20),
                     width: 120,

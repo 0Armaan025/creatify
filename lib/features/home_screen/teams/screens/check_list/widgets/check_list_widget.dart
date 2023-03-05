@@ -3,7 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 class CheckListWidget extends StatefulWidget {
   final String task;
-  const CheckListWidget({super.key, required this.task});
+  final size;
+  const CheckListWidget({super.key, required this.task, this.size = 18.0});
 
   @override
   State<CheckListWidget> createState() => _CheckListWidgetState();
@@ -40,19 +41,23 @@ class _CheckListWidgetState extends State<CheckListWidget> {
                 decoration: isTaskDone == true
                     ? TextDecoration.lineThrough
                     : TextDecoration.none,
-                fontSize: 24,
+                fontSize: widget.size,
               ),
             ),
             const SizedBox(
               width: 30,
             ),
-            CircleAvatar(
-              child: IconButton(
-                onPressed: () {
-                  isTaskDone = true;
-                  setState(() {});
-                },
-                icon: Icon(Icons.done),
+            Container(
+              // width: double.infinity,
+              alignment: Alignment.centerRight,
+              child: CircleAvatar(
+                child: IconButton(
+                  onPressed: () {
+                    isTaskDone = true;
+                    setState(() {});
+                  },
+                  icon: Icon(Icons.done),
+                ),
               ),
             ),
           ],

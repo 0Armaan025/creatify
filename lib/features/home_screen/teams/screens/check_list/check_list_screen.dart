@@ -49,6 +49,17 @@ class _CheckListScreenState extends State<CheckListScreen> {
                       CheckListWidget(
                         task: "Make a team",
                       ),
+                      CheckListWidget(
+                        task: "Plan an idea",
+                      ),
+                      CheckListWidget(
+                        task: "Get the set up",
+                      ),
+                      CheckListWidget(task: "Start executing it"),
+                      CheckListWidget(
+                        size: 14.0,
+                        task: "Collab with other creators",
+                      ),
                     ],
                   ),
                 ),

@@ -38,10 +38,15 @@ class _CollabScreenState extends State<CollabScreen> {
             const SizedBox(
               height: 20,
             ),
-            CreatorWidget(),
-            CreatorWidget(),
-            CreatorWidget(),
-            CreatorWidget(),
+            CreatorWidget(
+                name: 'Armaan',
+                tagline: "Hi there! I am Armaan\nand I want to win this!",
+                socialStatus: "15"),
+            CreatorWidget(
+                name: 'Vinayak from MLH',
+                tagline:
+                    "Hi there! I am Vinayak\n(coach at MLH)\nand I want to collab with people!",
+                socialStatus: "15"),
           ],
         ),
       ),
