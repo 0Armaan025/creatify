@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:creatify/features/home_screen/home_screen.dart';
+import 'package:creatify/features/home_screen/profile_screen/profile_screen.dart';
 import 'package:creatify/features/home_screen/teams/screens/ai_script/screens/optimization_screen.dart';
+import 'package:creatify/features/home_screen/teams/screens/challenges/screens/challenges_screen.dart';
 import 'package:creatify/features/home_screen/teams/screens/collab/screens/collab_screen.dart';
 import 'package:creatify/features/home_screen/teams/screens/create_team_screen.dart';
 import 'package:creatify/features/home_screen/teams/screens/teams_screen.dart';
@@ -44,6 +46,9 @@ AppBar makeCustomAppBar(String message) {
     centerTitle: true,
   );
 }
+
+int collaborations = 0;
+int points = 0;
 
 Drawer makeDrawer(BuildContext context) {
   return Drawer(
@@ -171,6 +176,9 @@ Drawer makeDrawer(BuildContext context) {
         Padding(
           padding: const EdgeInsets.all(0),
           child: ListTile(
+            onTap: () {
+              moveScreen(context, false, ChallengesScreen());
+            },
             tileColor: Color(0xFF336882),
             leading: Icon(
               Icons.cottage,
@@ -202,6 +210,38 @@ Drawer makeDrawer(BuildContext context) {
             ),
             title: Text(
               "AI Script Optimization",
+              style: GoogleFonts.roboto(
+                color: Color(0xFFF3FAFE),
+                fontWeight: FontWeight.w600,
+                fontSize: 15,
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Padding(
+          padding: const EdgeInsets.all(0),
+          child: ListTile(
+            onTap: () {
+              moveScreen(
+                  context,
+                  false,
+                  ProfileScreen(
+                      name: name,
+                      email: email,
+                      phoneNumber: '+917837433000',
+                      points: 0,
+                      collaborations: 0));
+            },
+            tileColor: Color.fromARGB(255, 64, 135, 170),
+            leading: Icon(
+              Icons.person,
+              color: Color(0xFFF3FAFE),
+            ),
+            title: Text(
+              "My Profile",
               style: GoogleFonts.roboto(
                 color: Color(0xFFF3FAFE),
                 fontWeight: FontWeight.w600,
@@ -273,6 +313,8 @@ Future<void> showMyDialog(
                               onPressed: () {
                                 Navigator.of(context).pop();
                                 moveScreen(context, false, HomeScreen());
+                                points = points + 1;
+                                collaborations = collaborations + 1;
                               },
                               child: Text("yayyyyy!")),
                         ],

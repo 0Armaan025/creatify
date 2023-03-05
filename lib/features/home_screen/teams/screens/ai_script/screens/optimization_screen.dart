@@ -7,7 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 
 class OptimizationScreen extends StatefulWidget {
-  const OptimizationScreen({super.key});
+  final String challenge;
+  const OptimizationScreen({super.key, this.challenge = "no"});
 
   @override
   State<OptimizationScreen> createState() => _OptimizationScreenState();
@@ -48,6 +49,11 @@ class _OptimizationScreenState extends State<OptimizationScreen> {
         _generatedText = responseJson["choices"][0]["text"];
         setState(() {});
         print('the generated text is $_generatedText');
+        if (widget.challenge == "yes") {
+          points = points + 1;
+          showSnackBar(context,
+              "The Challenge is successfully completed 🥳,Congratulations! you got 10 points!");
+        }
         return responseJson["choices"][0]["text"];
       } else {
         return "Failed to generate text: ${response.body}";
@@ -63,7 +69,7 @@ class _OptimizationScreenState extends State<OptimizationScreen> {
 
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: makeCustomAppBar('Checklist!'),
+      appBar: makeCustomAppBar('Script Optimization!'),
       drawer: makeDrawer(context),
       body: SingleChildScrollView(
         child: Column(
