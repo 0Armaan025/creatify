@@ -166,7 +166,8 @@ class _TeamInfoScreenState extends State<TeamInfoScreen> {
                 ),
                 InkWell(
                   onTap: () {
-                    moveScreen(context, false, CheckListScreen());
+                    moveScreen(context, false,
+                        CheckListScreen(teamName: widget.teamName));
                   },
                   child: Container(
                     padding: const EdgeInsets.all(4),

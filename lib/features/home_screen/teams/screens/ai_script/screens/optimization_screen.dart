@@ -46,8 +46,9 @@ class _OptimizationScreenState extends State<OptimizationScreen> {
       if (response.statusCode == 200) {
         var responseJson = json.decode(response.body);
         _generatedText = responseJson["choices"][0]["text"];
-        setState(() {});
+
         return responseJson["choices"][0]["text"];
+        setState(() {});
       } else {
         return "Failed to generate text: ${response.body}";
       }

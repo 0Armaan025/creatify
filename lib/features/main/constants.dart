@@ -236,6 +236,40 @@ Drawer makeDrawer(BuildContext context) {
   );
 }
 
+Future<void> showMyDialog(
+    BuildContext context, String title, String message, String teamName) async {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('$title'),
+        content: SingleChildScrollView(
+          child: ListBody(
+            children: <Widget>[
+              Text('$message'),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            child: const Text('Approve'),
+            onPressed: () {
+              Navigator.of(context).pop();
+              if (message == "Are you sure to give up?") {
+                firestore.collection('teams').doc(teamName).delete();
+                showSnackBar(context,
+                    'Unfortunately, the team has been deleted due to giving up of one member');
+                moveScreen(context, true, HomeScreen());
+              }
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+
 const apiSecretKey = "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";
 
 final bgColor = Color(0xFFD2D7D9);

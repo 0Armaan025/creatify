@@ -99,6 +99,20 @@ class _CreatorWidgetState extends State<CreatorWidget> {
                 ),
               ),
               Positioned(
+                  top: 10,
+                  left: 60,
+                  child: Container(
+                    height: 130,
+                    width: 130,
+                    child: Center(
+                      child: Image(
+                        image: NetworkImage(
+                            'https://static.mlh.io/brand-assets/logo/official/mlh-logo-color.png'),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  )),
+              Positioned(
                   top: 120,
                   left: 10,
                   child: Center(

@@ -5,7 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'widgets/check_list_widget.dart';
 
 class CheckListScreen extends StatefulWidget {
-  const CheckListScreen({super.key});
+  final String teamName;
+  const CheckListScreen({super.key, required this.teamName});
 
   @override
   State<CheckListScreen> createState() => _CheckListScreenState();
@@ -28,7 +29,7 @@ class _CheckListScreenState extends State<CheckListScreen> {
             ),
             Center(
               child: Text(
-                "Checklist!",
+                "${widget.teamName} Checklist!",
                 style: GoogleFonts.poppins(
                   color: Colors.black,
                   fontSize: 28,
@@ -71,18 +72,24 @@ class _CheckListScreenState extends State<CheckListScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Container(
-                  width: size.width * 0.4,
-                  height: size.height * 0.07,
-                  alignment: Alignment.center,
-                  child: Text('Give Up!',
-                      style: GoogleFonts.roboto(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600)),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Color(0xFF314B57),
+                InkWell(
+                  onTap: () {
+                    showMyDialog(
+                        context, 'Confirmation', 'Are you sure to give up?',widget.teamName);
+                  },
+                  child: Container(
+                    width: size.width * 0.4,
+                    height: size.height * 0.07,
+                    alignment: Alignment.center,
+                    child: Text('Give Up!',
+                        style: GoogleFonts.roboto(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600)),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Color(0xFF314B57),
+                    ),
                   ),
                 ),
                 Container(
