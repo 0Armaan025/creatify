@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:creatify/features/home_screen/teams/widgets/team_widget.dart';
 import 'package:creatify/features/main/constants.dart';
 import 'package:flutter/material.dart';
@@ -18,17 +19,33 @@ class _TeamsScreenState extends State<TeamsScreen> {
       drawer: makeDrawer(context),
       appBar: makeCustomAppBar('Teams'),
       backgroundColor: bgColor,
-      body: Container(
-          padding: EdgeInsets.all(12.0),
-          child: GridView.builder(
-            itemCount: 1,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 1,
-            ),
-            itemBuilder: (BuildContext context, int index) {
-              return Text('hi');
-            },
-          )),
+      body: StreamBuilder(
+          stream: firestore.collection('teams').snapshots(),
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (!snapshot.hasData) {
+              return Center(
+                  child: Text(
+                      "No data is currently available, go ahead and make a team!  "));
+            }
+
+            return SizedBox(
+              height: 300,
+              width: 1200,
+              child: Center(
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: snapshot.data!.docs.map((document) {
+                    return TeamWidget(
+                      image: document['image'],
+                      name: document['teamName'],
+                      tagline: document['teamTagline'],
+                    );
+                  }).toList(),
+                ),
+              ),
+            );
+          }),
     );
   }
 }

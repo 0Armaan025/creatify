@@ -1,8 +1,15 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TeamMemberWidget extends StatefulWidget {
-  const TeamMemberWidget({super.key});
+  final String name;
+  final String email;
+  const TeamMemberWidget({
+    Key? key,
+    required this.name,
+    required this.email,
+  }) : super(key: key);
 
   @override
   State<TeamMemberWidget> createState() => _TeamMemberWidgetState();
@@ -39,13 +46,13 @@ class _TeamMemberWidgetState extends State<TeamMemberWidget> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Armaan",
+                    "${widget.name}",
                     style: GoogleFonts.roboto(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text("armaan33000@gmail.com",
+                  Text("${widget.email}",
                       style: GoogleFonts.roboto(
                         color: Colors.white,
                         fontWeight: FontWeight.w400,

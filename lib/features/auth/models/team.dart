@@ -9,14 +9,12 @@ class TeamModel {
   final String teamCreatorName;
   final String teamCreatorUid;
   final String image;
-  final List<String> members;
   TeamModel({
     required this.teamName,
     required this.teamTagline,
     required this.teamCreatorName,
     required this.teamCreatorUid,
     required this.image,
-    required this.members,
   });
 
   TeamModel copyWith({
@@ -25,7 +23,6 @@ class TeamModel {
     String? teamCreatorName,
     String? teamCreatorUid,
     String? image,
-    List<String>? members,
   }) {
     return TeamModel(
       teamName: teamName ?? this.teamName,
@@ -33,7 +30,6 @@ class TeamModel {
       teamCreatorName: teamCreatorName ?? this.teamCreatorName,
       teamCreatorUid: teamCreatorUid ?? this.teamCreatorUid,
       image: image ?? this.image,
-      members: members ?? this.members,
     );
   }
 
@@ -44,7 +40,6 @@ class TeamModel {
       'teamCreatorName': teamCreatorName,
       'teamCreatorUid': teamCreatorUid,
       'image': image,
-      'members': members,
     };
   }
 
@@ -55,9 +50,6 @@ class TeamModel {
       teamCreatorName: map['teamCreatorName'] as String,
       teamCreatorUid: map['teamCreatorUid'] as String,
       image: map['image'] as String,
-      members: List<String>.from(
-        (map['members'] as List<String>),
-      ),
     );
   }
 
@@ -68,7 +60,7 @@ class TeamModel {
 
   @override
   String toString() {
-    return 'TeamController(teamName: $teamName, teamTagline: $teamTagline, teamCreatorName: $teamCreatorName, teamCreatorUid: $teamCreatorUid, image: $image, members: $members)';
+    return 'TeamModel(teamName: $teamName, teamTagline: $teamTagline, teamCreatorName: $teamCreatorName, teamCreatorUid: $teamCreatorUid, image: $image)';
   }
 
   @override
@@ -79,8 +71,7 @@ class TeamModel {
         other.teamTagline == teamTagline &&
         other.teamCreatorName == teamCreatorName &&
         other.teamCreatorUid == teamCreatorUid &&
-        other.image == image &&
-        listEquals(other.members, members);
+        other.image == image;
   }
 
   @override
@@ -89,7 +80,6 @@ class TeamModel {
         teamTagline.hashCode ^
         teamCreatorName.hashCode ^
         teamCreatorUid.hashCode ^
-        image.hashCode ^
-        members.hashCode;
+        image.hashCode;
   }
 }

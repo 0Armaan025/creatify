@@ -16,7 +16,6 @@ class TeamController {
       var dowurl = await ref.getDownloadURL();
       TeamModel newModel = TeamModel(
           image: dowurl,
-          members: [uid],
           teamCreatorName: model.teamCreatorName,
           teamCreatorUid: uid,
           teamName: model.teamName,
@@ -26,6 +25,18 @@ class TeamController {
           .doc(model.teamName)
           .set(newModel.toMap())
           .then((value) {
+        firestore
+            .collection('teams')
+            .doc(model.teamName)
+            .collection('members')
+            .doc(model.teamName)
+            .set({
+          "teamName": model.teamName,
+          "teamTagline": model.teamTagline,
+          "name": name,
+          "email": email,
+          "uid": uid,
+        });
         moveScreen(context, true, HomeScreen());
       });
     } catch (e) {

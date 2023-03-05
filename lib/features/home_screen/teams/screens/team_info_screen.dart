@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -7,8 +8,15 @@ import 'package:creatify/features/home_screen/teams/widgets/team_member_widget.d
 import 'package:creatify/features/main/constants.dart';
 
 class TeamInfoScreen extends StatefulWidget {
+  final String tagline;
+  final String teamName;
+  final String image;
+
   const TeamInfoScreen({
     Key? key,
+    required this.teamName,
+    required this.tagline,
+    required this.image,
   }) : super(key: key);
 
   @override
@@ -22,7 +30,7 @@ class _TeamInfoScreenState extends State<TeamInfoScreen> {
 
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: makeCustomAppBar('Creatify(team name)!'),
+      appBar: makeCustomAppBar('${widget.teamName}'),
       drawer: makeDrawer(context),
       body: SingleChildScrollView(
         child: Column(
@@ -32,7 +40,7 @@ class _TeamInfoScreenState extends State<TeamInfoScreen> {
             ),
             Center(
               child: Text(
-                "Creatify",
+                "${widget.teamName}",
                 style: GoogleFonts.poppins(
                   color: Colors.black,
                   fontSize: 32,
@@ -50,7 +58,7 @@ class _TeamInfoScreenState extends State<TeamInfoScreen> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 image: DecorationImage(
-                    image: NetworkImage('$widget.image'), fit: BoxFit.cover),
+                    image: NetworkImage('${widget.image}'), fit: BoxFit.cover),
               ),
             ),
             const SizedBox(
@@ -58,7 +66,7 @@ class _TeamInfoScreenState extends State<TeamInfoScreen> {
             ),
             Center(
               child: Text(
-                '" hi "',
+                '" ${widget.tagline} "',
                 style: GoogleFonts.roboto(
                   color: Colors.black,
                   fontSize: 14,
@@ -94,7 +102,34 @@ class _TeamInfoScreenState extends State<TeamInfoScreen> {
                         const SizedBox(
                           height: 15,
                         ),
-                        TeamMemberWidget(),
+                        StreamBuilder(
+                            stream: firestore
+                                .collection('teams')
+                                .doc(widget.teamName)
+                                .collection('members')
+                                .snapshots(),
+                            builder: (BuildContext context,
+                                AsyncSnapshot<QuerySnapshot> snapshot) {
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+
+                              return SizedBox(
+                                height: 300,
+                                width: 600,
+                                child: ListView(
+                                  scrollDirection: Axis.vertical,
+                                  children: snapshot.data!.docs.map((document) {
+                                    return TeamMemberWidget(
+                                      name: document['name'],
+                                      email: document['email'],
+                                    );
+                                  }).toList(),
+                                ),
+                              );
+                            }),
                         const SizedBox(
                           height: 20,
                         ),

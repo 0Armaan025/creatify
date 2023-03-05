@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CheckListWidget extends StatefulWidget {
-  const CheckListWidget({super.key});
+  final String task;
+  const CheckListWidget({super.key, required this.task});
 
   @override
   State<CheckListWidget> createState() => _CheckListWidgetState();
 }
 
 class _CheckListWidgetState extends State<CheckListWidget> {
+  bool isTaskDone = false;
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -19,7 +22,9 @@ class _CheckListWidgetState extends State<CheckListWidget> {
         height: size.height * 0.06,
         margin: const EdgeInsets.symmetric(horizontal: 20),
         decoration: BoxDecoration(
-          color: Colors.blue,
+          color: isTaskDone == true
+              ? Color.fromARGB(255, 28, 64, 83)
+              : Color(0xFF336882),
           borderRadius: BorderRadius.circular(10),
         ),
         alignment: Alignment.center,
@@ -27,11 +32,14 @@ class _CheckListWidgetState extends State<CheckListWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Task 1 ",
+              "${widget.task}\t",
               style: GoogleFonts.roboto(
                 color: Color(
                   0xFFF3FAFE,
                 ),
+                decoration: isTaskDone == true
+                    ? TextDecoration.lineThrough
+                    : TextDecoration.none,
                 fontSize: 24,
               ),
             ),
@@ -40,7 +48,10 @@ class _CheckListWidgetState extends State<CheckListWidget> {
             ),
             CircleAvatar(
               child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  isTaskDone = true;
+                  setState(() {});
+                },
                 icon: Icon(Icons.done),
               ),
             ),

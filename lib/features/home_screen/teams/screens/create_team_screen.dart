@@ -49,7 +49,6 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
   void makeTeam() async {
     TeamModel model = TeamModel(
         image: '',
-        members: [''],
         teamCreatorName: name,
         teamCreatorUid: uid,
         teamName: _teamNameController.text,

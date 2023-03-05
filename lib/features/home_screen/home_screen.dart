@@ -1,10 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:creatify/features/home_screen/teams/screens/collab/screens/collab_screen.dart';
 import 'package:creatify/features/home_screen/teams/screens/create_team_screen.dart';
 import 'package:creatify/features/home_screen/teams/screens/teams_screen.dart';
 import 'package:creatify/features/home_screen/teams/widgets/team_widget.dart';
 import 'package:creatify/features/main/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,6 +16,25 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  String todaysDate = "";
+  String year = "";
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    var now = new DateTime.now();
+    var formatter = new DateFormat('dd');
+    String formattedDate = formatter.format(now);
+    print(formattedDate);
+    todaysDate = formattedDate;
+    setState(() {});
+    formatter = new DateFormat('yyyy');
+    formattedDate = formatter.format(now);
+    year = formattedDate;
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: double.infinity,
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "4 March, 2023",
+                  "$todaysDate March, $year",
                   style: GoogleFonts.roboto(color: Colors.grey[600]),
                 ),
               ),
@@ -111,8 +132,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       AsyncSnapshot<QuerySnapshot> snapshot) {
                     if (!snapshot.hasData) {
                       return Center(
-                        child: CircularProgressIndicator(),
-                      );
+                          child: Text(
+                              "No data is currently available, go ahead and make a team!  "));
                     }
 
                     return SizedBox(
@@ -188,20 +209,25 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: 20,
                       ),
                       Center(
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 30),
-                          width: double.infinity,
-                          height: 50,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: Color(0xFF1C3A48),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Text(
-                            "Yeah, let's collab!",
-                            style: GoogleFonts.roboto(
-                              color: Color(0xFFF3FAFE),
-                              fontSize: 18,
+                        child: InkWell(
+                          onTap: () {
+                            moveScreen(context, false, CollabScreen());
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 30),
+                            width: double.infinity,
+                            height: 50,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: Color(0xFF1C3A48),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Text(
+                              "Yeah, let's collab!",
+                              style: GoogleFonts.roboto(
+                                color: Color(0xFFF3FAFE),
+                                fontSize: 18,
+                              ),
                             ),
                           ),
                         ),

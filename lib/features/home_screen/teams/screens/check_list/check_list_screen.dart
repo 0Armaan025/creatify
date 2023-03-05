@@ -46,8 +46,9 @@ class _CheckListScreenState extends State<CheckListScreen> {
                   padding: const EdgeInsets.all(18),
                   child: Column(
                     children: [
-                      CheckListWidget(),
-                      CheckListWidget(),
+                      CheckListWidget(
+                        task: "Make a team",
+                      ),
                     ],
                   ),
                 ),

@@ -84,12 +84,26 @@ class _TeamWidgetState extends State<TeamWidget> {
             ),
             InkWell(
               onTap: () {
-                moveScreen(context, false, TeamInfoScreen());
+                moveScreen(
+                    context,
+                    false,
+                    TeamInfoScreen(
+                      image: widget.image,
+                      tagline: widget.tagline,
+                      teamName: widget.name,
+                    ));
               },
               child: Center(
                 child: InkWell(
                   onTap: () {
-                    moveScreen(context, false, TeamInfoScreen());
+                    moveScreen(
+                        context,
+                        false,
+                        TeamInfoScreen(
+                          image: widget.image,
+                          tagline: widget.tagline,
+                          teamName: widget.name,
+                        ));
                   },
                   child: Container(
                     margin: const EdgeInsets.symmetric(horizontal: 20),
