@@ -46,9 +46,9 @@ class _OptimizationScreenState extends State<OptimizationScreen> {
       if (response.statusCode == 200) {
         var responseJson = json.decode(response.body);
         _generatedText = responseJson["choices"][0]["text"];
-
-        return responseJson["choices"][0]["text"];
         setState(() {});
+        print('the generated text is $_generatedText');
+        return responseJson["choices"][0]["text"];
       } else {
         return "Failed to generate text: ${response.body}";
       }
@@ -104,10 +104,12 @@ class _OptimizationScreenState extends State<OptimizationScreen> {
             ),
             Center(
               child: InkWell(
-                onTap: () {
+                onTap: () async {
                   final prompt =
                       "Optimize the script ${_scriptController.text}";
-                  generateText(prompt);
+                  String answer = await generateText(prompt);
+                  _generatedText = answer;
+                  setState(() {});
                 },
                 child: Container(
                     margin: const EdgeInsets.symmetric(horizontal: 70),

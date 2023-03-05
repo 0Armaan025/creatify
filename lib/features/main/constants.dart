@@ -270,7 +270,7 @@ Future<void> showMyDialog(
   );
 }
 
-const apiSecretKey = "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";
+const apiSecretKey = "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";
 
 final bgColor = Color(0xFFD2D7D9);
 final textColor = Color(0xFF01121A);
