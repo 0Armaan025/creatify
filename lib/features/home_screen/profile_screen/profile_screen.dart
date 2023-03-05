@@ -1,3 +1,4 @@
+import 'package:creatify/features/home_screen/home_screen.dart';
 import 'package:creatify/features/main/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -6,14 +7,14 @@ class ProfileScreen extends StatelessWidget {
   final String name;
   final String email;
   final String phoneNumber;
-  final int points;
+  final int thepoints;
   final int collaborations;
 
   ProfileScreen({
     required this.name,
     required this.email,
     required this.phoneNumber,
-    required this.points,
+    required this.thepoints,
     required this.collaborations,
   });
 
@@ -143,14 +144,19 @@ class ProfileScreen extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           Center(
-            child: Container(
-              width: 250,
-              height: 40,
-              alignment: Alignment.center,
-              color: btnColor,
-              child: Text(
-                "Become cooler creator!😎",
-                style: GoogleFonts.roboto(color: Colors.white, fontSize: 18),
+            child: InkWell(
+              onTap: () {
+                moveScreen(context, true, HomeScreen());
+              },
+              child: Container(
+                width: 250,
+                height: 40,
+                alignment: Alignment.center,
+                color: btnColor,
+                child: Text(
+                  "Become cooler creator!😎",
+                  style: GoogleFonts.roboto(color: Colors.white, fontSize: 18),
+                ),
               ),
             ),
           ),

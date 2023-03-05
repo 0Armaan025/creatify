@@ -50,7 +50,7 @@ class _OptimizationScreenState extends State<OptimizationScreen> {
         setState(() {});
         print('the generated text is $_generatedText');
         if (widget.challenge == "yes") {
-          points = points + 1;
+          points = points + 10;
           showSnackBar(context,
               "The Challenge is successfully completed 🥳,Congratulations! you got 10 points!");
         }

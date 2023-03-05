@@ -232,7 +232,7 @@ Drawer makeDrawer(BuildContext context) {
                       name: name,
                       email: email,
                       phoneNumber: '+917837433000',
-                      points: 0,
+                      thepoints: 0,
                       collaborations: 0));
             },
             tileColor: Color.fromARGB(255, 64, 135, 170),
@@ -313,7 +313,7 @@ Future<void> showMyDialog(
                               onPressed: () {
                                 Navigator.of(context).pop();
                                 moveScreen(context, false, HomeScreen());
-                                points = points + 1;
+                                points = points + 10;
                                 collaborations = collaborations + 1;
                               },
                               child: Text("yayyyyy!")),
